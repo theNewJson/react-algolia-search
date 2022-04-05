@@ -17,12 +17,13 @@ const search = css`
 
 interface Props {
   onSearch: (text: string) => void;
+  defaultValue?: string;
 }
 
 const SearchBar = (props: Props) => {
-  const { onSearch } = props;
+  const { onSearch, defaultValue } = props;
   return <div css={container}>
-    <input css={search} type="search" placeholder='Please enter the keyword' onKeyPress={(event) => event.key === "Enter" && onSearch((event.target as HTMLInputElement).value)} />
+    <input defaultValue={defaultValue} css={search} type="search" placeholder='Please enter the keyword' onKeyPress={(event) => event.key === "Enter" && onSearch((event.target as HTMLInputElement).value)} />
   </div>
 }
 
