@@ -2,6 +2,14 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Before you run this app
+You need to create a `.env` file and add environment variables for algolia search client to function properly.
+```
+REACT_APP_ALGOLIA_APLICATION_ID=
+REACT_APP_ALGOLIA_APLICATION_KEY=
+REACT_APP_ALGOLIA_INDEX_NAME=
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
