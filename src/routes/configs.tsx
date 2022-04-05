@@ -1,5 +1,5 @@
 import { lazy } from "react"
-import { Navigate, RouteProps } from "react-router-dom"
+import { RouteProps } from "react-router-dom"
 
 const Favorite = lazy(() => import("../pages/Favorite"))
 const Search = lazy(() => import("../pages/Search"))
@@ -9,14 +9,10 @@ export type routeKey = typeof config[number]
 
 export interface RouteConfig extends RouteProps {
   path: routeKey;
-  name?: string;
+  name: string;
 }
 
 const routes: RouteConfig[] = [
-  {
-    path: "/",
-    element: <Navigate to="/search" replace />,
-  },
   {
     path: "/search",
     name: "Search",
@@ -26,7 +22,7 @@ const routes: RouteConfig[] = [
     path: "/favorite",
     name: "Favorite",
     element: <Favorite />
-  },
-]
+  }
+];
 
 export default routes

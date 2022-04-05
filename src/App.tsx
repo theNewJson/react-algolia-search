@@ -7,7 +7,7 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar links={routes.filter((routeConfig => !!routeConfig.name))} />
+      <NavBar links={routes} />
       <Routes routes={routes} />
     </div>
   );

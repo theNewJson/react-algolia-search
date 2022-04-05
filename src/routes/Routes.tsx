@@ -1,5 +1,5 @@
 import { memo, Suspense } from "react";
-import { Route, Routes, RouteProps } from "react-router-dom"
+import { Route, Routes, RouteProps, Navigate } from "react-router-dom"
 
 
 const renderRouteComponent = (routeConfig: RouteProps) => <Route path={routeConfig.path} element={routeConfig.element} />
@@ -13,6 +13,7 @@ const RoutesComponent = (props: Props) => {
     <Suspense fallback={() => <div>loading</div>}>
       <Routes>
         {routes.map(renderRouteComponent)}
+        <Route path="*" element={<Navigate to="/search" replace />} />
       </Routes>
     </Suspense >
   )
