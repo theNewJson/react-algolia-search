@@ -1,6 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { memo } from "react"
+import { memo, useCallback } from "react"
+import { usePostContext } from "../context/post";
+import { Post } from "../pages/Search";
 
 
 const gray = "#e8e8e8"
@@ -16,6 +18,9 @@ const row = css`
     .button-save {
       display: block;
     }
+    .save-tag {
+      display: none;
+    }
   }
 `
 
@@ -25,14 +30,15 @@ const rowContent = css`
   flex-direction: column;
 `
 
-const rowAction = css`
-  flex-basis: 100px;
+const saveButton = css`
   text-align: right;
   display: none;
-`
-
-const displayBlock = css`
-  display: block;
+  background-color: white;
+  padding: 6px 8px;
+  font-size: 18px;
+  border-radius: 2px;
+  border: 1px solid black;
+  cursor: pointer;
 `
 
 const rowDescription = css`
@@ -62,7 +68,17 @@ const categoryTag = css`
   background-color: ${gray};
   border-radius: 2px;
   margin-left: 8px;
-  padding: 4px;
+  padding: 4px 6px;
+`
+
+const savedTag = css`
+  background-color: ${grayDark};
+  color: white;
+  border-radius: 2px;
+  padding: 4px 6px;
+  :hover {
+    display: none;
+  }
 `
 
 interface ListItemProps {
@@ -71,10 +87,19 @@ interface ListItemProps {
 }
 
 const ListItem = (props: ListItemProps) => {
-  const { rowData, isFavorite } = props;
-  const { categories, title, author_name } = rowData
+  const { rowData } = props;
+  const { id, categories, title, author_name, isFavorite } = rowData
+  const { addFavorite, removeFavorite } = usePostContext();
 
   const renderCategory = (category: string) => <div css={categoryTag}>{category}</div>
+
+  const handleClick = useCallback(() => {
+    if (isFavorite) {
+      removeFavorite(id);
+    } else {
+      addFavorite(rowData);
+    }
+  }, [id, isFavorite, rowData, addFavorite, removeFavorite])
 
   return <div css={row}>
     <div css={rowContent}>
@@ -84,18 +109,13 @@ const ListItem = (props: ListItemProps) => {
         <div css={categoriesContainer}>{categories.map(renderCategory)}</div>
       </div>
     </div>
-    <div className="button-save" css={[rowAction, isFavorite && displayBlock]}>
-      <button>{isFavorite ? "Unsave" : "Save"}</button>
+    <div>
+      {isFavorite && <div className="save-tag" css={savedTag}>Saved</div>}
+      <button css={saveButton} className="button-save" onClick={handleClick}>{isFavorite ? "Unsave" : "Save"}</button>
     </div>
   </div>
 }
 
-interface Post {
-  id: string,
-  title: string,
-  author_name: string,
-  categories: string[]
-}
 interface Props {
   list: Post[]
 }
@@ -106,7 +126,7 @@ const List = (props: Props) => {
     return <div>Loading...</div>
   }
   return <div>
-    {list.map((rowData, idx) => <ListItem rowData={rowData} isFavorite={idx === 0} />)}
+    {list.map((rowData) => <ListItem rowData={rowData} />)}
   </div>
 }
 

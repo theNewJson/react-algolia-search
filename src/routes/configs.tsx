@@ -1,8 +1,8 @@
 import { lazy } from "react"
 import { Navigate, RouteProps } from "react-router-dom"
 
-const Favorite = lazy(() => import("../pages/favorite"))
-const Search = lazy(() => import("../pages/search"))
+const Favorite = lazy(() => import("../pages/Favorite"))
+const Search = lazy(() => import("../pages/Search"))
 
 const config = ['/', '/search', '/favorite'] as const
 export type routeKey = typeof config[number]
