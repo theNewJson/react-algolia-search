@@ -9,20 +9,18 @@ const page = css`
   padding: 16px;
 `
 
-export interface Post {
-  id: string,
-  title: string,
-  author_name: string,
-  categories: string[],
-  isFavorite?: boolean
-}
+const empty = css`
+  margin-top: 32px;
+  text-align: left;
+  color: gray;
+`
 
 const Search = () => {
-  const { post, handleSearch, keyword } = usePostContext();
-
+  const { post, handleSearch, keyword, viewState } = usePostContext();
   return <div css={page}>
     <SearchBar onSearch={handleSearch} defaultValue={keyword} />
-    <List list={post} />
+    {viewState === 'loading' && <div css={empty}>Loading...</div>}
+    {viewState === 'success' && (post.length === 0 ? <div css={empty}>No result</div> : <List list={post} />)}
   </div>
 }
 

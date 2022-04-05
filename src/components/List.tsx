@@ -1,9 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { memo, useCallback } from "react"
-import { usePostContext } from "../context/post";
-import { Post } from "../pages/Search";
-
+import { usePostContext, Post } from "../context/post";
 
 const gray = "#e8e8e8"
 const grayDark = "#8f8f8f"
@@ -117,14 +115,11 @@ const ListItem = (props: ListItemProps) => {
 }
 
 interface Props {
-  list: Post[]
+  list: Post[];
 }
 const List = (props: Props) => {
   const { list } = props;
 
-  if (!list) {
-    return <div>Loading...</div>
-  }
   return <div>
     {list.map((rowData) => <ListItem rowData={rowData} />)}
   </div>

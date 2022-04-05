@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { memo } from "react"
+import { debounce } from "lodash-es";
+import { memo, useCallback } from "react"
 
 const gray = "#e8e8e8"
 
@@ -22,8 +23,13 @@ interface Props {
 
 const SearchBar = (props: Props) => {
   const { onSearch, defaultValue } = props;
+  const debouncedChange = useCallback((event) => {
+    debounce((event) => {
+      onSearch((event.target as HTMLInputElement).value)
+    }, 1000)(event)
+  }, [onSearch]);
   return <div css={container}>
-    <input defaultValue={defaultValue} css={search} type="search" placeholder='Please enter the keyword' onKeyPress={(event) => event.key === "Enter" && onSearch((event.target as HTMLInputElement).value)} />
+    <input defaultValue={defaultValue} css={search} type="search" placeholder='Please enter the keyword' onChange={debouncedChange} />
   </div>
 }
 
