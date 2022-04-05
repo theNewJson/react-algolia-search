@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/react-algolia-search/static/css/main.073c9b0a.css",
+    "main.js": "/react-algolia-search/static/js/main.60ddf70c.js",
+    "static/js/927.188f5a05.chunk.js": "/react-algolia-search/static/js/927.188f5a05.chunk.js",
+    "static/js/680.e1a3ddb9.chunk.js": "/react-algolia-search/static/js/680.e1a3ddb9.chunk.js",
+    "static/js/787.d6347566.chunk.js": "/react-algolia-search/static/js/787.d6347566.chunk.js",
+    "index.html": "/react-algolia-search/index.html",
+    "main.073c9b0a.css.map": "/react-algolia-search/static/css/main.073c9b0a.css.map",
+    "main.60ddf70c.js.map": "/react-algolia-search/static/js/main.60ddf70c.js.map",
+    "927.188f5a05.chunk.js.map": "/react-algolia-search/static/js/927.188f5a05.chunk.js.map",
+    "680.e1a3ddb9.chunk.js.map": "/react-algolia-search/static/js/680.e1a3ddb9.chunk.js.map",
+    "787.d6347566.chunk.js.map": "/react-algolia-search/static/js/787.d6347566.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.60ddf70c.js"
+  ]
+}
